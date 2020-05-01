@@ -87,7 +87,10 @@ class Registry:
                 serial_number = self.serial_number
                 attribute = self.component_property
                 component = self.component_name
-                device_id = self.get_deviceid()[i]
+                try:
+                    device_id = self.get_deviceid()[i]
+                except:
+                    device_id = False
                 try:
                     device_sn = self.get_devicesn()[i]
                 except:

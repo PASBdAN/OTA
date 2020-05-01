@@ -103,25 +103,25 @@ CAT_DICT = {
         {"propriedade": "Taxa de Gravação", "query": None, "valor": None}, #
     ],
     "Armazenamento HD SLT1": [
-        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '0'", "valor": None},
-        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '0'", "valor": None},
-        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '0'", "valor": None},
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE Index = '0' AND NOT InterfaceType LIKE '%SCSI%'", "valor": None},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE Index = '0' AND NOT InterfaceType LIKE '%SCSI%'", "valor": None},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE Index = '0' AND NOT InterfaceType LIKE '%SCSI%'", "valor": None},
         {"propriedade": "Rotação", "query": None, "valor": None}, #
         {"propriedade": "Espessura", "query": None, "valor": None}, #
         {"propriedade": "Marca", "query": None, "valor": None}, #
     ],
     "Armazenamento HD SLT2": [
-        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '1'", "valor": None},
-        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '1'", "valor": None},
-        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '1'", "valor": None},
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE Index = '1' AND NOT InterfaceType LIKE '%SCSI%'", "valor": None},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE Index = '1' AND NOT InterfaceType LIKE '%SCSI%'", "valor": None},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE Index = '1' AND NOT InterfaceType LIKE '%SCSI%'", "valor": None},
         {"propriedade": "Rotação", "query": None, "valor": None}, #
         {"propriedade": "Espessura", "query": None, "valor": None}, #
         {"propriedade": "Marca", "query": None, "valor": None}, #
     ],
     "Armazenamento HD SLT3": [
-        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '2'", "valor": None},
-        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '2'", "valor": None},
-        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '2'", "valor": None},
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE Index = '2' AND NOT InterfaceType LIKE '%SCSI%'", "valor": None},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE Index = '2' AND NOT InterfaceType LIKE '%SCSI%'", "valor": None},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE Index = '2' AND NOT InterfaceType LIKE '%SCSI%'", "valor": None},
         {"propriedade": "Rotação", "query": None, "valor": None}, #
         {"propriedade": "Espessura", "query": None, "valor": None}, #
         {"propriedade": "Marca", "query": None, "valor": None}, #

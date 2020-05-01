@@ -13,8 +13,8 @@ CAT_DICT = {
         {"propriedade": "Frequência", "query": "Select MaxClockSpeed From Win32_Processor", "valor": None},
         {"propriedade": "Temperatura Média", "query": None, "valor": None}, #
     ],
-    "Chipset": [
-        {"propriedade": "DeviceID", "query":"Select PNPDeviceID From Win32_PNPEntity WHERE Caption LIKE '%chipset%'", "valor": None},
+    "Chipset": [ #Series Chipset Family
+        {"propriedade": "DeviceID", "query":"Select PNPDeviceID From Win32_PNPEntity WHERE Caption LIKE '%Series Chipset Family%'", "valor": None},
         {"propriedade": "DeviceID_SN", "query": None, "valor": None}, #
         {"propriedade": "Modelo", "query":"Select Caption From Win32_PNPEntity WHERE Caption LIKE '%chipset%'", "valor": None},
     ],
@@ -72,20 +72,56 @@ CAT_DICT = {
         {"propriedade": "Modelo", "query": "Select Caption From Win32_VideoController WHERE Caption LIKE '%intel%'", "valor": None},
         {"propriedade": "Memória Dedicada", "query": "Select AdapterRAM From Win32_VideoController WHERE Caption LIKE '%intel%'", "valor": None},
     ],
-    "Armazenamento SSD": [
-        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE InterfaceType LIKE '%SCSI%'", "valor": None},
-        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE InterfaceType LIKE '%SCSI%'", "valor": None},
-        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE InterfaceType LIKE '%SCSI%'", "valor": None},
-        {"propriedade": "Modelo", "query": "Select Caption From Win32_DiskDrive WHERE InterfaceType LIKE '%SCSI%'", "valor": None},
+    "Armazenamento SSD SLT1": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '0'", "valor": None},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '0'", "valor": None},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '0'", "valor": None},
+        {"propriedade": "Modelo", "query": "Select Caption From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '0'", "valor": None},
         {"propriedade": "Marca", "query": None, "valor": None}, #
-        {"propriedade": "Formato", "query": "Select InterfaceType From Win32_DiskDrive", "valor": None},
+        {"propriedade": "Formato", "query": "Select InterfaceType From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '0'", "valor": None},
         {"propriedade": "Taxa de Leitura", "query": None, "valor": None}, #
         {"propriedade": "Taxa de Gravação", "query": None, "valor": None}, #
     ],
-    "Armazenamento HD": [
-        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE InterfaceType LIKE '%IDE%'", "valor": None},
-        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE InterfaceType LIKE '%IDE%'", "valor": None},
-        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE InterfaceType LIKE '%IDE%'", "valor": None},
+    "Armazenamento SSD SLT2": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '1'", "valor": None},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '1'", "valor": None},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '1'", "valor": None},
+        {"propriedade": "Modelo", "query": "Select Caption From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '1'", "valor": None},
+        {"propriedade": "Marca", "query": None, "valor": None}, #
+        {"propriedade": "Formato", "query": "Select InterfaceType From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '1'", "valor": None},
+        {"propriedade": "Taxa de Leitura", "query": None, "valor": None}, #
+        {"propriedade": "Taxa de Gravação", "query": None, "valor": None}, #
+    ],
+    "Armazenamento SSD SLT3": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '2'", "valor": None},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '2'", "valor": None},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '2'", "valor": None},
+        {"propriedade": "Modelo", "query": "Select Caption From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '2'", "valor": None},
+        {"propriedade": "Marca", "query": None, "valor": None}, #
+        {"propriedade": "Formato", "query": "Select InterfaceType From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '2'", "valor": None},
+        {"propriedade": "Taxa de Leitura", "query": None, "valor": None}, #
+        {"propriedade": "Taxa de Gravação", "query": None, "valor": None}, #
+    ],
+    "Armazenamento HD SLT1": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '0'", "valor": None},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '0'", "valor": None},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '0'", "valor": None},
+        {"propriedade": "Rotação", "query": None, "valor": None}, #
+        {"propriedade": "Espessura", "query": None, "valor": None}, #
+        {"propriedade": "Marca", "query": None, "valor": None}, #
+    ],
+    "Armazenamento HD SLT2": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '1'", "valor": None},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '1'", "valor": None},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '1'", "valor": None},
+        {"propriedade": "Rotação", "query": None, "valor": None}, #
+        {"propriedade": "Espessura", "query": None, "valor": None}, #
+        {"propriedade": "Marca", "query": None, "valor": None}, #
+    ],
+    "Armazenamento HD SLT3": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '2'", "valor": None},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '2'", "valor": None},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE NOT InterfaceType LIKE '%SCSI%' AND Index = '2'", "valor": None},
         {"propriedade": "Rotação", "query": None, "valor": None}, #
         {"propriedade": "Espessura", "query": None, "valor": None}, #
         {"propriedade": "Marca", "query": None, "valor": None}, #
@@ -99,15 +135,15 @@ CAT_DICT = {
         {"propriedade": "Nome", "query": "Select ProductName From Win32_SoundDevice WHERE Caption LIKE '%Realtek%'", "valor": None},
     ],
     "Teclado": [
-        {"propriedade": "DeviceID", "query": "Select PnPDeviceID, Layout From Win32_Keyboard", "valor": None},
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID, Layout From Win32_Keyboard WHERE PNPDeviceID LIKE 'ACPI\\MSFT%'", "valor": None},
         {"propriedade": "DeviceID_SN", "query": None, "valor": None}, #
-        {"propriedade": "Referência", "query": "Select Layout From Win32_Keyboard", "valor": None},
+        {"propriedade": "Referência", "query": "Select Layout From Win32_Keyboard WHERE PNPDeviceID LIKE 'ACPI\\MSFT%'", "valor": None},
         {"propriedade": "Tipo", "query": None, "valor": None}, #
         {"propriedade": "Iluminação", "query": None, "valor": None}, #
         {"propriedade": "Controlador de Iluminação", "query": None, "valor": None}, #
     ],
     "Touchpad": [
-        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_PointingDevice WHERE Caption LIKE '%HID%'", "valor": None},
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_PointingDevice WHERE PNPDeviceID LIKE 'HID\\UNI%'", "valor": None},
         {"propriedade": "DeviceID_SN", "query": None, "valor": None}, #
         {"propriedade": "Software", "query": None, "valor": None}, #
         {"propriedade": "Tecnologia", "query": None, "valor": None}, #

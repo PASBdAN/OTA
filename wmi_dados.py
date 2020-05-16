@@ -10,6 +10,13 @@ import xmlrpc.client
 import hashlib
 
 HOME = os.path.expanduser("~")
+XML_DIR = HOME + "\\appdata\\Roaming\\Avell"
+try:
+    os.chdir(XML_DIR)
+except:
+    os.mkdir(XML_DIR)
+    os.chdir(XML_DIR)
+
 XML_DIR = HOME + "\\appdata\\Roaming\\Avell\\WMI"
 try:
     os.chdir(XML_DIR)

@@ -28,3 +28,8 @@ for n in wmi.WMI().query("Select * From Win32_PnPEntity Where Caption Like '%Chi
     for m in n._properties:
         WMI_DICT["Chipset"].append({"propriedade": m, "query": "Select " + m + " From Win32_PNPEntity Where Caption Like '%Chipset%'", "value": None})
 
+for n in wmi.WMI().query("Select * From Win32_DisplayControllerConfiguration"):
+    for m in n._properties:
+        WMI_DICT["Tela"].append({"propriedade": m, "query": "Select " + m + " From Win32_DisplayControllerConfiguration", "value": None})
+
+# print(WMI_DICT)

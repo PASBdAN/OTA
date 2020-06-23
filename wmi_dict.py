@@ -20,7 +20,6 @@ for device in WMI_DICT:
     for n in wmi.WMI().query("Select * From " + list_of_classes[i]):
         for m in n._properties:
             WMI_DICT[device].append({"propriedade": m, "query": "Select " + m + " From " + list_of_classes[i], "value": None})
-
     i += 1
 
 WMI_DICT["Chipset"] = []
@@ -32,4 +31,18 @@ for n in wmi.WMI().query("Select * From Win32_DisplayControllerConfiguration"):
     for m in n._properties:
         WMI_DICT["Tela"].append({"propriedade": m, "query": "Select " + m + " From Win32_DisplayControllerConfiguration", "value": None})
 
-# print(WMI_DICT)
+WMI_DICT["Wireless"] = []
+for n in wmi.WMI().query("Select * From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%'"):
+    for m in n._properties:
+        WMI_DICT["Wireless"].append({"propriedade": m, "query": "Select " + m + " From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%'"})
+
+'''
+for n in WMI_DICT:
+    for m in WMI_DICT[n]:
+        print(m)
+'''
+from tqdm import tqdm
+
+for n in tqdm(WMI_DICT):
+    # current contents of your for loop
+    print(n)

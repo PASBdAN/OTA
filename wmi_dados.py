@@ -96,7 +96,7 @@ class Payload:
         common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
         common.version()
         models = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
-        auth = ["avell-oca-db", 6, "p8W1UmTRz#q$", "wmi.data"]
+        auth = ["helpdesk", 7, "p8W1UmTRz#q$", "wmi.data"]
         response = models.execute_kw(auth[0], auth[1], auth[2], auth[3], 'get_wmi_data', [data_list])
         return response
 
@@ -107,6 +107,6 @@ class Payload:
         return self.send_to_odoo(payload)
 
 data_list = []
-payload = Payload(data_list, "https://odoo-oca.avell.com", XML_DIR)
+payload = Payload(data_list, "https://helpdesk.avell.com", XML_DIR)
 payload.get_data_list()
 payload.generate_xml()

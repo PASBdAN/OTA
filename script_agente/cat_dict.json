@@ -1,0 +1,192 @@
+{
+    "Processador": [
+        {"propriedade": "DeviceID", "query": "Select ProcessorId From Win32_Processor", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Modelo", "query": "Select Caption From Win32_Processor", "valor": null},
+        {"propriedade": "Memória Cache", "query": "Select L3CacheSize From Win32_Processor", "valor": null},
+        {"propriedade": "Frequência", "query": "Select MaxClockSpeed From Win32_Processor", "valor": null},
+        {"propriedade": "Temperatura Média", "query": null, "valor": null}
+    ],
+    "Chipset": [
+        {"propriedade": "DeviceID", "query":"Select PNPDeviceID From Win32_PNPEntity WHERE Caption LIKE '%Series Chipset Family%' OR Caption LIKE '%Chipset%' AND Caption LIKE '%AMD%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Modelo", "query":"Select Caption From Win32_PNPEntity WHERE Caption LIKE '%chipset%'", "valor": null}
+    ],
+    "Tela": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DesktopMonitor WHERE MonitorType LIKE '%PnP%' AND PnPDeviceID LIKE '%BOE%' OR PnPDeviceID LIKE '%LG%' OR PnPDeviceID LIKE '%NCP%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Marca", "query": "Select PnPDeviceID From Win32_DesktopMonitor WHERE MonitorType LIKE '%PnP%' AND PnPDeviceID LIKE '%BOE%' OR PnPDeviceID LIKE '%LG%'", "valor": null},
+        {"propriedade": "Polegadas", "query": null, "valor": null},
+        {"propriedade": "Resolução", "query": null, "valor": null},
+        {"propriedade": "Taxa de Atualização de Frame", "query": "Select RefreshRate From Win32_DisplayControllerConfiguration", "valor": null},
+        {"propriedade": "IPS", "query": null, "valor": null},
+        {"propriedade": "NTSC", "query": null, "valor": null},
+        {"propriedade": "Papel Fotográfico", "query": null, "valor": null},
+        {"propriedade": "Contraste", "query": null, "valor": null},
+        {"propriedade": "Brilho", "query": null, "valor": null},
+        {"propriedade": "Tempo de Resposta do Monitor", "query": null, "valor": null}
+    ],
+    "Memória SLT1": [
+        {"propriedade": "DeviceID", "query": "Select PartNumber From Win32_PhysicalMemory WHERE DeviceLocator LIKE '%ChannelA-DIMM0%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": "Select PartNumber, SerialNumber, DeviceLocator From Win32_PhysicalMemory WHERE DeviceLocator LIKE '%ChannelA-DIMM0%'", "valor": null},
+        {"propriedade": "Capacidade", "query": "Select Capacity From Win32_PhysicalMemory WHERE DeviceLocator LIKE '%ChannelA-DIMM0%'", "valor": null},
+        {"propriedade": "Frequência", "query": "Select Speed From Win32_PhysicalMemory WHERE DeviceLocator LIKE '%ChannelA-DIMM0%'", "valor": null},
+        {"propriedade": "Tipo", "query": null, "valor": null},
+        {"propriedade": "Marca", "query": "Select Manufacturer From Win32_PhysicalMemory WHERE DeviceLocator LIKE '%ChannelA-DIMM0%'", "valor": null}
+    ],
+    "Memória SLT2": [
+        {"propriedade": "DeviceID", "query": "Select PartNumber From Win32_PhysicalMemory WHERE DeviceLocator LIKE '%ChannelB-DIMM0%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": "Select PartNumber, SerialNumber, DeviceLocator From Win32_PhysicalMemory WHERE DeviceLocator LIKE '%ChannelB-DIMM0%'", "valor": null},
+        {"propriedade": "Capacidade", "query": "Select Capacity From Win32_PhysicalMemory WHERE DeviceLocator LIKE '%ChannelB-DIMM0%'", "valor": null},
+        {"propriedade": "Frequência", "query": "Select Speed From Win32_PhysicalMemory WHERE DeviceLocator LIKE '%ChannelB-DIMM0%'", "valor": null},
+        {"propriedade": "Tipo", "query": null, "valor": null},
+        {"propriedade": "Marca", "query": "Select Manufacturer From Win32_PhysicalMemory WHERE DeviceLocator LIKE '%ChannelB-DIMM0%'", "valor": null}
+    ],
+    "Placa de Vídeo Nvidia": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_VideoController WHERE Caption LIKE '%nvidia%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Modelo", "query": "Select Caption From Win32_VideoController WHERE Caption LIKE '%nvidia%'", "valor": null},
+        {"propriedade": "Memória Dedicada", "query": "Select Caption From Win32_VideoController WHERE Caption LIKE '%nvidia%'", "valor": null},
+        {"propriedade": "Bits de Cor", "query": null, "valor": null},
+        {"propriedade": "Tipo da Memória", "query": null, "valor": null},
+        {"propriedade": "Temperatura Média", "query": null, "valor": null},
+        {"propriedade": "FPS", "query": null, "valor": null}
+    ],
+    "Placa de Vídeo Intel": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_VideoController WHERE Caption LIKE '%intel%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Modelo", "query": "Select Caption From Win32_VideoController WHERE Caption LIKE '%intel%'", "valor": null},
+        {"propriedade": "Memória Dedicada", "query": "Select AdapterRAM From Win32_VideoController WHERE Caption LIKE '%intel%'", "valor": null}
+    ],
+    "Placa de Vídeo AMD": [
+        {"propriedade": "DeviceID", "query": null, "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Modelo", "query": null, "valor": null},
+        {"propriedade": "Memória Dedicada", "query": null, "valor": null}
+    ],
+    "Armazenamento SSD SLT1": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '0'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '0'", "valor": null},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '0'", "valor": null},
+        {"propriedade": "Modelo", "query": "Select Caption From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '0'", "valor": null},
+        {"propriedade": "Marca", "query": null, "valor": null},
+        {"propriedade": "Formato", "query": "Select InterfaceType From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '0'", "valor": null},
+        {"propriedade": "Taxa de Leitura", "query": null, "valor": null},
+        {"propriedade": "Taxa de Gravação", "query": null, "valor": null}
+    ],
+    "Armazenamento SSD SLT2": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '1'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '1'", "valor": null},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '1'", "valor": null},
+        {"propriedade": "Modelo", "query": "Select Caption From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '1'", "valor": null},
+        {"propriedade": "Marca", "query": null, "valor": null},
+        {"propriedade": "Formato", "query": "Select InterfaceType From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '1'", "valor": null},
+        {"propriedade": "Taxa de Leitura", "query": null, "valor": null},
+        {"propriedade": "Taxa de Gravação", "query": null, "valor": null}
+    ],
+    "Armazenamento SSD SLT3": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '2'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '2'", "valor": null},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '2'", "valor": null},
+        {"propriedade": "Modelo", "query": "Select Caption From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '2'", "valor": null},
+        {"propriedade": "Marca", "query": null, "valor": null},
+        {"propriedade": "Formato", "query": "Select InterfaceType From Win32_DiskDrive WHERE SCSIPort != '0' AND Index = '2'", "valor": null},
+        {"propriedade": "Taxa de Leitura", "query": null, "valor": null},
+        {"propriedade": "Taxa de Gravação", "query": null, "valor": null}
+    ],
+    "Armazenamento HD": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE Index = '0' AND NOT InterfaceType LIKE '%SCSI%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE Index = '0' AND NOT InterfaceType LIKE '%SCSI%'", "valor": null},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE Index = '0' AND NOT InterfaceType LIKE '%SCSI%'", "valor": null},
+        {"propriedade": "Rotação", "query": null, "valor": null},
+        {"propriedade": "Espessura", "query": null, "valor": null},
+        {"propriedade": "Modelo", "query": "Select Model From Win32_DiskDrive WHERE Index = '0' AND NOT InterfaceType LIKE '%SCSI%'", "valor": null}
+    ],
+    "Sistema de Som": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_SoundDevice WHERE Caption LIKE '%Realtek%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Marca", "query": "Select Manufacturer From Win32_SoundDevice WHERE Caption LIKE '%Realtek%'", "valor": null},
+        {"propriedade": "Software de Controle", "query": null, "valor": null},
+        {"propriedade": "Potência de Caixa", "query": null, "valor": null},
+        {"propriedade": "Nome", "query": "Select ProductName From Win32_SoundDevice WHERE Caption LIKE '%Realtek%'", "valor": null}
+    ],
+    "Teclado": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID, Layout From Win32_Keyboard WHERE PNPDeviceID LIKE 'ACPI\\MSFT%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Referência", "query": "Select Layout From Win32_Keyboard WHERE PNPDeviceID LIKE 'ACPI\\MSFT%'", "valor": null},
+        {"propriedade": "Tipo", "query": null, "valor": null},
+        {"propriedade": "Iluminação", "query": null, "valor": null},
+        {"propriedade": "Controlador de Iluminação", "query": null, "valor": null}
+    ],
+    "Touchpad": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_PointingDevice WHERE PNPDeviceID LIKE 'HID\\UNI%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Software", "query": null, "valor": null},
+        {"propriedade": "Tecnologia", "query": null, "valor": null}
+    ],
+    "Portas e Conexões": [
+        {"propriedade": "Tipos de Portas", "query": null, "valor": null},
+        {"propriedade": "HDMI", "query": null, "valor": null},
+        {"propriedade": "Display", "query": null, "valor": null},
+        {"propriedade": "USB 1", "query": null, "valor": null},
+        {"propriedade": "USB 2", "query": null, "valor": null},
+        {"propriedade": "USB 3", "query": null, "valor": null},
+        {"propriedade": "Conexão 1", "query": null, "valor": null},
+        {"propriedade": "Conexão 2", "query": null, "valor": null},
+        {"propriedade": "RJ", "query": null, "valor": null}
+    ],
+    "Leitor de Cartão": [
+        {"propriedade": "DeviceID", "query": null, "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Tipo de Cartões", "query": null, "valor": null}
+    ],
+    "Wireless": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": "Select GUID From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%'", "valor": null},
+        {"propriedade": "Modelo", "query": "Select Caption From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%'", "valor": null},
+        {"propriedade": "Frequência", "query": null, "valor": null},
+        {"propriedade": "Velocidade Máxima", "query": null, "valor": null},
+        {"propriedade": "Versão Bluetooth", "query": null, "valor": null}
+    ],
+    "Webcam": [
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_PNPEntity WHERE PNPClass LIKE '%Camera%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Qualidade", "query": null, "valor": null}
+    ],
+    "Fonte": [
+        {"propriedade": "Modelo", "query": null, "valor": null},
+        {"propriedade": "Peso", "query": null, "valor": null},
+        {"propriedade": "Tensão", "query": null, "valor": null},
+        {"propriedade": "Corrente de Saída", "query": null, "valor": null},
+        {"propriedade": "Potência", "query": null, "valor": null}
+    ],
+    "Bateria": [
+        {"propriedade": "DeviceID", "query": "Select DeviceID From Win32_Battery", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Tensão", "query": null, "valor": null},
+        {"propriedade": "Consumo", "query": null, "valor": null},
+        {"propriedade": "Modelo", "query": null, "valor": null},
+        {"propriedade": "Peso", "query": null, "valor": null}
+    ],
+    "Dimensão": [
+        {"propriedade": "Dimensões", "query": null, "valor": null},
+        {"propriedade": "Peso", "query": null, "valor": null}
+    ],
+    "Placa Mãe": [
+        {"propriedade": "Modelo", "query": "Select Product From Win32_BaseBoard", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Fabricante", "query": "Select Manufacturer From Win32_BaseBoard", "valor": null},
+        {"propriedade": "Versão", "query": "Select SerialNumber From Win32_BaseBoard", "valor": null}
+    ],
+    "Bios": [
+        {"propriedade": "DeviceID", "query": "Select SoftwareElementID From Win32_BIOS", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Versão", "query": "Select SMBIOSBIOSVersion From Win32_BIOS", "valor": null},
+        {"propriedade": "Data", "query": "Select ReleaseDate From Win32_BIOS", "valor": null}
+    ],
+    "Sistema Operacional": [
+        {"propriedade": "Edição", "query": "Select Caption From Win32_OperatingSystem", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": null, "valor": null},
+        {"propriedade": "Versão de compilação", "query": "Select Version From Win32_OperatingSystem", "valor": null}
+    ]
+}

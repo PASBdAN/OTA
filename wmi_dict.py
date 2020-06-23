@@ -45,8 +45,3 @@ for n in WMI_DICT:
     for m in WMI_DICT[n]:
         print(m)
 '''
-from tqdm import tqdm
-
-for n in tqdm(WMI_DICT):
-    # current contents of your for loop
-    print(n)

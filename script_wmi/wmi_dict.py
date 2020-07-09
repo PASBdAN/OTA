@@ -15,7 +15,7 @@ WMI_DICT = {
     "Adaptador de Rede": {"queries":[]},
 }
 
-list_of_classes = ["Win32_Processor", "Win32_DesktopMonitor", "Win32_PhysicalMemory", "Win32_VideoController", "Win32_DiskDrive", "Win32_Keyboard", "Win32_PointingDevice", "Win32_Battery", "Win32_BaseBoard", "Win32_BIOS", "Win32_OperatingSystem, Win32_NetworkAdapter"]
+list_of_classes = ["Win32_Processor", "Win32_DesktopMonitor", "Win32_PhysicalMemory", "Win32_VideoController", "Win32_DiskDrive", "Win32_Keyboard", "Win32_PointingDevice", "Win32_Battery", "Win32_BaseBoard", "Win32_BIOS", "Win32_OperatingSystem", "Win32_NetworkAdapter"]
 i = 0
 for device in WMI_DICT:
     n = wmi.WMI().query("Select * From " + list_of_classes[i])[0]

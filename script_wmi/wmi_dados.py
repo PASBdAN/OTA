@@ -33,6 +33,7 @@ def create_xml_file(name = get_serial_number(), dicio = {}):
     with open(name + ".xml", "w+") as f:
         dom.writexml(writer = f, encoding = "iso-8859-1")
 
+'''
 @dataclass
 class Registry:
     component_name: str
@@ -69,6 +70,7 @@ class Registry:
                 if value == None:
                     value = False
                 self.data_list.append({"SN":serial_number, "Componente":component, "Atributo":attribute, "Valor_Atributo":value})
+'''
 
 @dataclass
 class Payload:
@@ -79,15 +81,26 @@ class Payload:
     def get_data_list(self):
         from wmi_dict import WMI_DICT
         sn = get_serial_number()
+        print("\nINICIOU A COLETA\n")
         for key in WMI_DICT:
-            j = 0
-            for prop in WMI_DICT[key]:
-                registry = Registry(key, prop["propriedade"], prop["query"], self.data_list, sn)
-                print(j)
-                registry.insert_data_list()
-                j += 1
+            #print(key)
+            #i = 1
+            for qry in WMI_DICT[key]["queries"]:
+                j = 0
+                for n in wmi.WMI().query(qry):
+                    for m in n._properties:
+                        #print("Query {}: m, Objeto {}".format(i, j))
+                        if m in WMI_DICT[key]["properties"].split(", "):
+                            value = getattr(n,m)
+                            if value == None:
+                                value = False
+                            self.data_list.append({"SN":sn, "Componente": "{}::{}".format(key, j), "Atributo": m, "Valor_Atributo":value})
+                    j += 1
+                #i += 1
+        print("\nFINALIZOU A COLETA\n")
     
     def generate_xml(self):
+        print("\nENVIANDO DADOS AO ODOO\n")
         print(self.send_payload())
         create_xml_file(name = "Payload", dicio= self.data_list)
 

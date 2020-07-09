@@ -95,12 +95,12 @@
         {"propriedade": "Taxa de Gravação", "query": null, "valor": null}
     ],
     "Armazenamento HD": [
-        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE Index = '0' AND NOT InterfaceType LIKE '%SCSI%'", "valor": null},
-        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE Index = '0' AND NOT InterfaceType LIKE '%SCSI%'", "valor": null},
-        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE Index = '0' AND NOT InterfaceType LIKE '%SCSI%'", "valor": null},
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_DiskDrive WHERE Index = '0' AND InterfaceType LIKE '%IDE%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": "Select SerialNumber From Win32_DiskDrive WHERE Index = '0' AND InterfaceType LIKE '%IDE%'", "valor": null},
+        {"propriedade": "Capacidade", "query": "Select Size From Win32_DiskDrive WHERE Index = '0' AND InterfaceType LIKE '%IDE%'", "valor": null},
         {"propriedade": "Rotação", "query": null, "valor": null},
         {"propriedade": "Espessura", "query": null, "valor": null},
-        {"propriedade": "Modelo", "query": "Select Model From Win32_DiskDrive WHERE Index = '0' AND NOT InterfaceType LIKE '%SCSI%'", "valor": null}
+        {"propriedade": "Modelo", "query": "Select Model From Win32_DiskDrive WHERE Index = '0' AND InterfaceType LIKE '%IDE%'", "valor": null}
     ],
     "Sistema de Som": [
         {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_SoundDevice WHERE Caption LIKE '%Realtek%'", "valor": null},
@@ -141,9 +141,9 @@
         {"propriedade": "Tipo de Cartões", "query": null, "valor": null}
     ],
     "Wireless": [
-        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%'", "valor": null},
-        {"propriedade": "DeviceID_SN", "query": "Select GUID From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%'", "valor": null},
-        {"propriedade": "Modelo", "query": "Select Caption From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%'", "valor": null},
+        {"propriedade": "DeviceID", "query": "Select PnPDeviceID From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%' OR Caption LIKE '%Wi-Fi%' OR Caption LIKE '%Wifi%' OR Caption LIKE '%wi-fi%' OR Caption LIKE '%wifi%'", "valor": null},
+        {"propriedade": "DeviceID_SN", "query": "Select GUID From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%' OR Caption LIKE '%Wi-Fi%' OR Caption LIKE '%Wifi%' OR Caption LIKE '%wi-fi%' OR Caption LIKE '%wifi%'", "valor": null},
+        {"propriedade": "Modelo", "query": "Select Caption From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%' OR Caption LIKE '%Wi-Fi%' OR Caption LIKE '%Wifi%' OR Caption LIKE '%wi-fi%' OR Caption LIKE '%wifi%'", "valor": null},
         {"propriedade": "Frequência", "query": null, "valor": null},
         {"propriedade": "Velocidade Máxima", "query": null, "valor": null},
         {"propriedade": "Versão Bluetooth", "query": null, "valor": null}

@@ -32,14 +32,19 @@ for n in wmi.WMI().query("Select * From Win32_DisplayControllerConfiguration"):
         WMI_DICT["Tela"].append({"propriedade": m, "query": "Select " + m + " From Win32_DisplayControllerConfiguration", "value": None})
 
 WMI_DICT["Wireless"] = []
-for n in wmi.WMI().query("Select * From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%'"):
+for n in wmi.WMI().query("Select * From Win32_NetworkAdapter"):
     for m in n._properties:
-        WMI_DICT["Wireless"].append({"propriedade": m, "query": "Select " + m + " From Win32_NetworkAdapter WHERE Caption LIKE '%Wireless%'"})
+        WMI_DICT["Wireless"].append({"propriedade": m, "query": "Select " + m + " From Win32_NetworkAdapter"})
 
 WMI_DICT["Webcam"] = []
 for n in wmi.WMI().query("Select * From Win32_PnPEntity Where PNPClass Like '%Camera%'"):
     for m in n._properties:
-        WMI_DICT["Chipset"].append({"propriedade": m, "query": "Select " + m + " From Win32_PNPEntity Where PNPClass Like '%Camera%'", "value": None})
+        WMI_DICT["Webcam"].append({"propriedade": m, "query": "Select " + m + " From Win32_PNPEntity Where PNPClass Like '%Camera%'", "value": None})
+
+WMI_DICT["Drivers"] = []
+for n in wmi.WMI().query("Select * From Win32_PnPSignedDriver"):
+    for m in n._properties:
+        WMI_DICT["Drivers"].append({"propriedade": m, "query": "Select " + m + " From Win32_PNPEntity Where PNPClass Like '%Camera%'", "value": None})
 '''
 for n in WMI_DICT:
     for m in WMI_DICT[n]:

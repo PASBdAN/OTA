@@ -116,43 +116,89 @@ class Registry:
 
     def get_deviceid(self):
         lista = self.query(self.id_qry)
+        if (lista != None and lista != []) and (self.id_qry != None and self.id_qry != []):
+            if self.id_qry.split()[3] == "Win32_NetworkAdapter":
+                i = 0
+                while(i < len(lista)):
+                    if lista[i] != None:
+                        if lista[i].split('\\')[0] != 'PCI':
+                            lista.pop(i)
+                            i -= 1
+                    i += 1
+            print("\n PEGOU O {} DO {}: {}".format(self.id_qry.split()[1], self.id_qry.split()[3], lista))
+        else:
+            lista = []
+            print("\n NÃO PEGOU DADOS")
         # print(lista, "getting deviceid")
         if lista != None and lista != []:
             if self.id_qry.split()[1] == "PNPDeviceID" or self.id_qry.split()[1] == "PnPDeviceID" or self.id_qry.split()[1] == "PnPDeviceId" or self.id_qry.split()[1] == "PnPDeviceID," or self.id_qry.split()[1] == "PNPDeviceID,":
                 if self.id_qry.split()[4] == "Win32_Keyboard":
                     valor = lista[0].split("_")
+                    print(valor)
                     valor2 = valor[0].split("\\")
+                    print(valor2)
                     del valor2[-1]
                     valor3 = "\\".join(valor2)
+                    print(valor3)
                     lista[0] = valor3 + "_" + valor[1]
+                    print("\n PEGOU O DEVICEID DO {}: {}".format(self.id_qry.split()[3], lista[0]))
+
                 elif type(lista[0]) == str:
                     aux = lista[0].split("\\")
                     del aux[-1]
                     aux2 = "\\".join(aux)
                     lista[0] = aux2
+                    print("\n PEGOU O DEVICEID DO {}: {}".format(self.id_qry.split()[3], lista[0]))
         return lista
 
     def get_devicesn(self):
         lista = self.query(self.sn_qry)
+        print("\n PEGOU O DEVICESN DO {}".format(self.sn_qry.split()[3]))
         return lista
 
     def get_value(self):
+        '''
+        aux = self.get_deviceid()
+        print(aux, self.qry)
+        if (aux != None and aux != []) and (self.qry != None and self.qry != []):
+            if aux[0] != None:
+                if self.qry.split()[3] == "Win32_NetworkAdapter" and aux[0].split("\\")[0] == "PCI":
+                    lista = self.query(self.qry)
+                elif self.qry.split()[3] != "Win32_NetworkAdapter":
+                    lista = self.query(self.qry)
+                else:
+                    lista = []
+                print("\n PEGOU O {} DO {}: {}".format(self.qry.split()[1], self.qry.split()[3], lista))
+            else:
+                lista = []
+        else:
+            lista = []
+            print("\n NÃO PEGOU DADOS")
+        '''
         lista = self.query(self.qry)
-        # print(lista, "getting registry value")
+        # print(lista, "getting registry value"
         if lista != None and lista != []:
-            if self.qry != None and (self.qry.split()[1] == "PNPDeviceID" or self.qry.split()[1] == "PnPDeviceID" or self.qry.split()[1] == "PnPDeviceId" or self.qry.split()[1] == "PnPDeviceID," or self.qry.split()[1] == "PNPDeviceID,"):
+            aux = self.qry.split()
+            if self.qry != None and (aux[1] == "PNPDeviceID" or aux[1] == "PnPDeviceID" or aux[1] == "PnPDeviceId" or aux[1] == "PnPDeviceID," or aux[1] == "PNPDeviceID,"):
                 try:
-                    if self.qry.split()[4] == "Win32_Keyboard":
+                    if aux[4] == "Win32_Keyboard":
+                        print("\n INICIOU A COLETA DE {} DO {}".format(self.qry.split()[1],self.qry.split()[3]))
                         valor = lista[0].split("_")
+                        print(valor)
                         valor2 = valor[0].split("\\")
+                        print(valor2)
                         del valor2[-1]
                         valor3 = "\\".join(valor2)
+                        print(valor3)
                         lista[0] = valor3 + "_" + valor[1]
+                        print("\n PEGOU O {} DO {}: {}".format(self.qry.split()[1],self.qry.split()[4], lista[0]))
                     elif type(lista[0]) == str:
+                        print("\n INICIOU A COLETA DE {} DO {}".format(self.qry.split()[1],self.qry.split()[3]))
                         aux = lista[0].split("\\")
                         del aux[-1]
                         aux2 = "\\".join(aux)
                         lista[0] = aux2
+                        print("\n PEGOU O {} DO {}: {}".format(self.qry.split()[1],self.qry.split()[3], lista[0]))
                 except:
                     pass
         return lista
@@ -168,20 +214,22 @@ class Registry:
                 component = self.component_name
                 try:
                     device_id = self.get_deviceid()[i]
+                    if device_id == None:
+                        device_id = False
                 except:
                     device_id = False
                 try:
                     device_sn = self.get_devicesn()[i]
+                    if device_sn == None:
+                        device_sn = False
                 except:
-                    device_sn = False
-                if device_id == None:
-                    device_id = False
-                if device_sn == None:
                     device_sn = False
                 i+=1
                 if value == None:
                     value = False
                 self.data_list.append({"SN":serial_number, "ID_Device":device_id, "Registry_type": registry_type, "ID_SerialNumber_Device":device_sn, "Componente":component, "Atributo":attribute, "Valor_Atributo":value})
+                if component == "Wireless" and device_id == False:
+                    self.data_list.pop(-1)
 
 @dataclass
 class Payload:
@@ -249,14 +297,15 @@ class Payload:
 
     # É POSSÍVEL FAZER UMA ÚNICA FUNÇÃO
     def generate_xml(self):
+        print("\n\nGERANDO O XML DO PAYLOAD\n")
         if os.path.isfile("Payload.xml"):
             create_xml_file(name = "Payload2", dicio = self.data_list)
             flag = self.compare_hash(["Payload.xml", "Payload2.xml"])
             self.generate_old_xml(flag)
-            response = [True, [], []]
+            response = [True, [], True]
         else:
-            response = self.send_payload()
-            # response = [True, [], []]
+            # response = self.send_payload()
+            response = [True, [], True]
             create_xml_file(name = "Payload", dicio= self.data_list)
             self.generate_old_xml(False)
         return response
